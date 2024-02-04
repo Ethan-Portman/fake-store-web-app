@@ -1,23 +1,22 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import PlantItem from './PlantItem';
-
-import sunflowerImage from '../images/sunflower.png'
-import carnationImage from '../images/carnation.png'
-import tulipImage from '../images/tulip.png'
-import lilyImage from '../images/lily.png'
-import daffodilImage from '../images/daffodil.png'
-import roseImage from '../images/rose.png'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react';
 
 const PlantList = () => {
+    const [plantData, setPlantData] = useState([]);
 
-    const plantData = [
-        { id: 0, name: 'Sunflower', price: 29.99, image: sunflowerImage },
-        { id: 1, name: 'Carnation', price: 19.99, image: carnationImage },
-        { id: 2, name: 'Tulip', price: 29.99, image: sunflowerImage },
-        { id: 3, name: 'Lily', price: 19.99, image: tulipImage },
-        { id: 4, name: 'Daffodil', price: 19.99, image: lilyImage },
-        { id: 5, name: 'Rose', price: 19.99, image: daffodilImage }
-    ];
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await axios.get('http://localhost:3004/v1/plants');
+                setPlantData(response.data);
+            } catch (error) {
+                console.log("Error fetching data:", error.message);
+            }
+        })();
+    }, []);
+
 
     return (
         <div>
@@ -36,7 +35,3 @@ const PlantList = () => {
 };
 
 export default PlantList;
-
-// {plantData.map((plant) => (
-//     <PlantItem key={plant.id} plant={plant} />
-// ))}

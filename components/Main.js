@@ -1,13 +1,13 @@
 import NavigationBar from './NavigationBar';
 import PageHeader from './PageHeader';
-import CartOffCanvas from './CartOffCanvas';
 import PlantList from './PlantList';
+import LoginOffCanvas from './Login/LoginOffCanvas';
 
 const Main = () => {
     return (
         <>
             <NavigationBar />
-            <CartOffCanvas />
+            <LoginOffCanvas />
             <PageHeader />
             <PlantList />
         </>
